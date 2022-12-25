@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  goals-db:
+    image: mongo
+    volumes:
+      - data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=sam
+      - MONGO_INITDB_ROOT_PASSWORD=sam
+  
+  goals-node:
+    build: ./backend
+      # context: ./backend
+      # dockerfile: .
+    env_file:
+      - ./env/goals-node.props
+    volumes:
+      - logs:/app/logs
+      - ./backend/:/app
+      - /app/node_modules
+    ports:
+      - "80:80"
+    depends_on:
+      - goals-db
+  
+  goals-react:
+    build: ./frontend
+    volumes:
+      - ./frontend/src:/app/src
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - goals-node
+
+volumes:
+  data:
+  logs:
