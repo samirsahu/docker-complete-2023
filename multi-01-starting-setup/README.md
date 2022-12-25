@@ -1,8 +1,15 @@
-# Make Image:
+# Build Image:
 
 ./dbuild.sh
 
-# Run Image:
+# Start Containers:
 
 ./drun.sh
 
+# Run Application:
+
+http://localhost:3000
+
+# Stop Containers:
+
+./dstop.sh

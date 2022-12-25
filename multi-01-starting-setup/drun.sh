@@ -6,6 +6,7 @@ docker run \
     --name goals-db \
     --rm \
     -d \
+    -v data:/data/db \
     --network goals-net \
     mongo
 
