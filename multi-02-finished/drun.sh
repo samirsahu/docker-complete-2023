@@ -8,7 +8,7 @@ docker run \
     -d \
     --env MONGO_INITDB_ROOT_USERNAME=sam \
     --env MONGO_INITDB_ROOT_PASSWORD=sam \
-    -v data:/data/db \
+    -v goals-data:/data/db \
     --network goals-net \
     mongo
 
@@ -21,7 +21,7 @@ docker run \
     --env MONGO_USERNAME=sam \
     --env MONGO_PASSWORD=sam \
     -v "$(pwd)/backend:/app" \
-    -v logs:/app/logs \
+    -v goals-node-logs:/app/logs \
     -v /app/node_modules \
     goals-node:2.0
 
