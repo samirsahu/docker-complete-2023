@@ -1,13 +1,13 @@
 FROM node
 
+WORKDIR /app
+
 COPY package.json .
 
 RUN npm install
 
 COPY . .
 
-EXPOSE 80
-ENV MONGO_USERNAME=sam
-ENV MONGO_PASSWORD=sam
+EXPOSE 3000
 
 CMD [ "npm", "start" ]
