@@ -1,13 +1,20 @@
 #!/bin/zsh
 
-# docker network create fav-net
-docker run --name goals-db --rm -d -p 27017:27017 mongo
+docker network create goals-net
 
 docker run \
+    --name goals-db \
+    --rm \
+    -d \
+    --network goals-net \
+    mongo
+
+docker run \
+    --name goals-node \
     -p 80:80 \
     -d \
     --rm \
-    --name goals-node \
+    --network goals-net \
     goals-node:1.0
 
 docker run \
